@@ -16,7 +16,7 @@ function getItemCount(tags) {
         let exist = false;
         for (let j = 0; j < result.length; j++) {
             if (result[j].key === item) {
-                result[j].count ++;
+                result[j].count++;
                 exist = true;
                 break;
             }
@@ -47,4 +47,18 @@ function calculateTotalPrice(priceList) {
         totalPrice += priceList[i].price;
     }
     return totalPrice;
+}
+
+function printReceipt(tags) {
+    const priceList = buildPriceList(getItemCount(tags), loadAllItemMap());
+    const totalPrice = calculateTotalPrice(priceList);
+    let receipt = "Receipts\n" +
+        "------------------------------------------------------------\n";
+    for (let i = 0; i < priceList.length; i++) {
+        const realPrice = priceList[i];
+        receipt += realPrice.itemDetail.name + "\t\t\t" + realPrice.itemDetail.price + "\t\t" + realPrice.count + "\n";
+    }
+    receipt += "------------------------------------------------------------\n";
+    receipt += "Price: " + totalPrice;
+    return receipt;
 }

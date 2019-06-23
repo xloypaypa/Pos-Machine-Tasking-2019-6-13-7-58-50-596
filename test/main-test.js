@@ -57,12 +57,14 @@ describe('pos', () => {
     });
 
     it('should return total price', () => {
-        const priceList = [
-            {"key": "0001", "count": 1, "itemDetail": {"id": "0001", "name": "Coca Cola", "price": 3}, "price": 3},
-            {"key": "0003", "count": 2, "itemDetail": {"id": "0003", "name": "Pepsi-Cola", "price": 5}, "price": 10},
-            {"key": "0005", "count": 1, "itemDetail": {"id": "0005", "name": "Dr Pepper", "price": 7}, "price": 7},
-        ];
+        const receipts = "Receipts\n" +
+            "------------------------------------------------------------\n" +
+            "Coca Cola\t\t\t3\t\t1\n" +
+            "Pepsi-Cola\t\t\t5\t\t2\n" +
+            "Dr Pepper\t\t\t7\t\t1\n" +
+            "------------------------------------------------------------\n" +
+            "Price: 20";
 
-        expect(calculateTotalPrice(priceList)).toEqual(20);
+        expect(printReceipt(['0001', '0003', '0005', '0003'])).toEqual(receipts);
     });
 });
