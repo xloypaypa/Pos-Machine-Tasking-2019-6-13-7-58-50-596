@@ -55,4 +55,14 @@ describe('pos', () => {
 
         expect(buildPriceList(itemCount, itemMap)).toEqual(expectMap);
     });
+
+    it('should return total price', () => {
+        const priceList = [
+            {"key": "0001", "count": 1, "itemDetail": {"id": "0001", "name": "Coca Cola", "price": 3}, "price": 3},
+            {"key": "0003", "count": 2, "itemDetail": {"id": "0003", "name": "Pepsi-Cola", "price": 5}, "price": 10},
+            {"key": "0005", "count": 1, "itemDetail": {"id": "0005", "name": "Dr Pepper", "price": 7}, "price": 7},
+        ];
+
+        expect(calculateTotalPrice(priceList)).toEqual(20);
+    });
 });
